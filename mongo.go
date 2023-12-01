@@ -2,7 +2,6 @@ package xk6_mongo
 
 import (
 	"context"
-	"log"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -38,7 +37,6 @@ func (*Mongo) NewClient(connURI string) interface{} {
 		return nil
 	}
 
-	log.Print("Mongo client has been created")
 	return &Client{client: client}
 }
 

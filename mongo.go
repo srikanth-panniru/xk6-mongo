@@ -128,6 +128,28 @@ func (c *Client) UpdateOne(database string, collection string, filter interface{
 	return res.MatchedCount
 }
 
+func (c *Client) incrementUpdateTime(database string, collection string, filter interface{}) int64 {
+	db := c.client.Database(database)
+	col := db.Collection(collection)
+	update := bson.A{
+              		bson.D{
+              			{"$set", bson.D{
+              				{"updateTime", bson.D{
+              					{"$add", bson.A{
+              						"$updateTime",
+              						1,
+              					}},
+              				}},
+              			}},
+              		},
+              	}
+	res, err := col.UpdateOne(context.TODO(), filter, update)
+	if err != nil {
+		panic(err)
+	}
+	return res.MatchedCount
+}
+
 func (c *Client) DeleteOne(database string, collection string, filter map[string]any) error {
 	db := c.client.Database(database)
 	col := db.Collection(collection)

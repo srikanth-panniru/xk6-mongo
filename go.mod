@@ -1,4 +1,4 @@
-module github.com/nj4x/xk6-mongo
+module github.com/srikanth-panniru/xk6-mongo
 
 go 1.19
 

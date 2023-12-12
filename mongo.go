@@ -128,7 +128,7 @@ func (c *Client) UpdateOne(database string, collection string, filter interface{
 	return res.MatchedCount
 }
 
-func (c *Client) incrementUpdateTime(database string, collection string, filter interface{}) int64 {
+func (c *Client) IncrementUpdateTime(database string, collection string, filter interface{}) int64 {
 	db := c.client.Database(database)
 	col := db.Collection(collection)
 	update := bson.A{
